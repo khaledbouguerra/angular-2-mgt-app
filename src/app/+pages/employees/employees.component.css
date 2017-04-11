@@ -1,0 +1,21 @@
+button {
+    background-color: #34f9f6
+}
+
+.row{
+    margin-left: 25%
+}
+.title{
+    margin-left:30%
+}
+.addBtn{
+    position: fixed;
+    bottom: 10px;
+    right: 10px
+}
+.card{
+
+    width: 90%;
+    margin-top: 10px;
+
+}

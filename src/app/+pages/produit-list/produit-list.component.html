@@ -1,0 +1,33 @@
+<div class="container"
+     fxLayout
+      fxLayoutGap="30px"
+    fxLayoutWrap
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="30px">
+
+  <div class="item item-1" fxFlex="24%" *ngFor="let product  of products" >
+<md-card class="employess">
+
+  <a href="#" (click)="openDialog($event)">
+<img md-card-sm-image src="../../../assets/imgs/products.png" *ngIf="!product.img">
+<img md-card-sm-image [src]="product.img" *ngIf="product.img">
+<md-card-title color="primary">{{product.name}} </md-card-title>
+<md-card-subtitle>{{product.description}}</md-card-subtitle>
+  </a>
+
+</md-card>
+</div>
+  
+
+
+
+
+
+</div>
+<div class="addBtn">
+ <button md-fab (click)="goToAdd()"><md-icon>add</md-icon></button></div>
+
+
+

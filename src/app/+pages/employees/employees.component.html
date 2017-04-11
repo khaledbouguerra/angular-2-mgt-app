@@ -1,0 +1,46 @@
+
+<div class="container"
+     fxLayout
+      fxLayoutGap="30px"
+    fxLayoutWrap
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="30px">
+<!-----list---->
+<md-card class="card">
+<md-list>
+
+<div class="container"
+     fxLayout
+      fxLayoutGap="30px"
+    fxLayoutWrap
+     fxLayout.xs="row"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="30px">
+
+ <div class="item item-1" fxFlex="100%"  >
+<md-list-item *ngFor="let employee of employees">
+<img md-list-avatar src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/user-128.png" >
+<h3 md-line>{{employee.lastName}}, {{employee.firstName}} </h3>
+
+ <p md-line>{{employee.phone}} </p>
+
+    <p md-line>{{employee.email}} </p>
+
+    <p md-line>{{employee.createDate| date}} </p>
+ <button md-raised-button (click)="goToEdit(employee.id)" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-pencil"> EDIT</span>
+                    </button>
+                    <button md-raised-button (click)="DeleteEmployee(employee)" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove">REMOVE</span>
+                    </button>
+</md-list-item>
+ </div>
+</div>
+</md-list>
+</md-card>
+</div>
+<div class="addBtn">
+ <button md-fab (click)="goToAdd()"><md-icon>add</md-icon></button></div>

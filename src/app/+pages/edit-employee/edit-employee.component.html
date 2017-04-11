@@ -1,0 +1,85 @@
+ <!------ship item------------------>
+<div cass="title">
+<h1 class="title">Modifier employee</h1>
+</div>
+
+<div class="container"
+     fxLayout
+      fxLayoutGap="30px"
+    fxLayoutWrap
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="30px">
+     <div class="item item-1" fxFlex="40%"  >
+
+
+
+ 
+ <md-card class="mdCard">
+ 
+<form>
+ 
+ 
+<div class="form-group">
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td> <label for="first-name">First Name : &nbsp;</label> </td>
+         <td> <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="getedEmployee.firstName" type="text" class="form-control" id="first-name" placeholder="First Name" name="first-name">
+    </md-input-container> </td>
+   </tr>
+   </table>
+    </div>
+ 
+ 
+ 
+ 
+<div class="form-group">
+     <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+        <label for="last-name">Last Name : &nbsp;</label>
+        </td>
+         <td> <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="getedEmployee.lastName" type="text" class="form-control" id="last-name" placeholder="Last Name" name="last-name" >
+    </md-input-container> </td>
+   </tr>
+   </table>
+    </div>
+ 
+ 
+ 
+ 
+<div class="form-group">
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+        <label for="email">Email : &nbsp;</label>
+        </td>
+        <td> <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="getedEmployee.email" type="text" class="form-control" id="email" placeholder="Email" name="email">
+    </md-input-container> </td>
+   </tr>
+   </table>
+    </div>
+ 
+ 
+ 
+ 
+<div class="form-group">
+     <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+        <label for="phone">Phone : &nbsp;</label>
+        </td>
+         <td> <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="getedEmployee.phone" type="text" class="form-control" id="phone" placeholder="Phone"name="phone">
+    </md-input-container> </td>
+   </tr>
+   </table>
+    </div>
+ 
+ 
+    <button md-raised-button (click)="saveEmployee()" type="button" class="btn btn-default">Sauvegarder</button>
+    <button md-raised-button (click)="cancelAdd()" type="button" class="btn btn-danger">Annuler</button>
+</form>
+</md-card>
+</div> 
+</div>

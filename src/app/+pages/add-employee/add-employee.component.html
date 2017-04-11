@@ -1,0 +1,72 @@
+
+<div class="container"
+     fxLayout
+      fxLayoutGap="30px"
+    fxLayoutWrap
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="30px">
+     <div class="item item-1" fxFlex="40%"  >
+ <md-card class="mdCard">
+ 
+ 
+<form >
+ 
+ 
+<div class="form-group">
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>  <label for="first-name">Nom : </label> </td>
+        <td> <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="newEmployee.firstName" type="text" class="form-control" id="first-name" placeholder="Nom" name="first-name">
+   </md-input-container> </td>
+   </tr>
+   </table>
+    </div>
+ 
+ 
+ 
+ 
+<div class="form-group">
+    <table class="example-full-width" cellspacing="0"><tr>
+       <td> <label for="last-name">Prénom : </label> </td>
+     <td>    <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="newEmployee.lastName" type="text" class="form-control" id="last-name" placeholder="Prénom" name="last-name" >
+    </md-input-container> </td>
+    </tr>
+    </table>
+    </div>
+ 
+ 
+ 
+ 
+<div class="form-group">
+     <table class="example-full-width" cellspacing="0"><tr>
+     <td>   <label for="email">Email : </label> </td>
+       <td>  <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="newEmployee.email" type="text" class="form-control" id="email" placeholder="Email" name="email">
+     </md-input-container> </td>
+     </tr>
+    </table>
+    </div>
+ 
+ 
+ 
+ 
+<div class="form-group">
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>  <label for="phone">Téléphone : </label> </td>
+    <td>     <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="newEmployee.phone" type="text" class="form-control" id="phone" placeholder="Téléphone"name="phone">
+   </md-input-container> </td>
+   </tr>
+    </table>
+    </div>
+ 
+ 
+    <button md-raised-button (click)="saveEmployee()" type="button" class="btn btn-default">sauvegarder</button>
+    <button md-raised-button (click)="cancelAdd()" type="button" class="btn btn-danger">Annuler</button>
+</form>
+</md-card>
+</div>
+</div>
