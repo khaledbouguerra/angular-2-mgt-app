@@ -6,3 +6,16 @@
     bottom: 10px;
     right: 10px
 }
+.search{
+    width:20%;
+    height: 30px;
+    margin-top:1%;
+    margin-left: 25%;
+}
+
+
+/*****search*****************/
+
+.searchCard{
+    height:70px
+}

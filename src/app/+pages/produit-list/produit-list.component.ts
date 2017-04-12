@@ -14,10 +14,10 @@ import {ProduitService} from '../../+services/produit-services/produit.service';
   styleUrls: ['./produit-list.component.css']
 })
 export class ProduitListComponent implements OnInit {
-products:Array<Produit>=[];
+products:any;
 searchForm: FormGroup;
 selectedOption: string;
-
+  //products: Observable<Produit[]>;
 
 
 
@@ -39,7 +39,25 @@ selectedOption: string;
       console.log(products);
     this.products=products;
   })
+this.searchForm.controls['search'].valueChanges.map(value=>console.log('this is the typed value', value));
+  this.searchForm.controls['search'].valueChanges
+  .map(value=>value)
+  .subscribe(value=>this.produitService.getProducts()
+  .then(product=>{
+   this.products= product.filter(product=>product.name.indexOf(value.toLowerCase())>-1)
+    
+    console.log('this is the fuckin value', value);
+    console.log('this is the fuckin result', this.products);
+  }));
+ 
+  
+  
 }
+
+ private search(produit: Produit[], value: string) {
+    return produit.filter(p => value ? p.name.toLowerCase().includes(value.toLowerCase()) : produit);
+  }
+
 openDialog(e) {
   e.preventDefault();
     let dialogRef = this.dialog.open(DialogResultExampleDialog);
@@ -51,6 +69,7 @@ openDialog(e) {
    console.log('adding a new product');
    this.router.navigate(['ajouter-produit']);
   }
+ 
 
 
 }

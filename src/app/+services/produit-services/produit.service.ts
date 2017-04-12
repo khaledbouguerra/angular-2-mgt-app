@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import {PROD_DATA} from '../../+mock-data/produit-data';
 import {Produit} from '../../+data/Produit';
+import {Observable} from "rxjs";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 
 @Injectable()
 export class ProduitService {
 data=PROD_DATA;
 NEW_ID=16;
-  constructor() { }
+ 
+  constructor() { 
+  
+  }
  getProducts():Promise<any>{
   
   return Promise.resolve(this.data);
@@ -47,6 +53,8 @@ AddProduct(produit:Produit):Promise<any>{
  }
 
 
+
+ 
 }
 
 

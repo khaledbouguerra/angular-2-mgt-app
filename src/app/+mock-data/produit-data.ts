@@ -54,5 +54,41 @@ export let PROD_DATA : Array<any>=[
         'weight':1,
         'creationDate': '1/1/1999',
         'img':'../assets/imgs/p_1.jpg'
+    },
+      {
+        'id': 7,
+        'name': 'produit 7',
+        'description': 'description',
+        'height':10,
+        'weight':1,
+        'creationDate': '1/1/1999',
+        'img':'../assets/imgs/p_1.jpg'
+    },
+      {
+        'id': 8,
+        'name': 'produit 8',
+        'description': 'description',
+        'height':10,
+        'weight':1,
+        'creationDate': '1/1/1999',
+        'img':'../assets/imgs/p_1.jpg'
+    },
+      {
+        'id': 9,
+        'name': 'produit 9',
+        'description': 'description',
+        'height':10,
+        'weight':1,
+        'creationDate': '1/1/1999',
+        'img':'../assets/imgs/p_1.jpg'
+    },
+      {
+        'id': 10,
+        'name': 'produit 10',
+        'description': 'description',
+        'height':10,
+        'weight':1,
+        'creationDate': '1/1/1999',
+        'img':'../assets/imgs/p_1.jpg'
     }
 ];
