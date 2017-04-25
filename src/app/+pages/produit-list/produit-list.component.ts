@@ -8,6 +8,8 @@ import 'rxjs/add/operator/startWith';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {Produit} from '../../+data/produit';
 import {ProduitService} from '../../+services/produit-services/produit.service';
+import {ProductSharedDataService} from '../../+services/shared_data/product-shared-data.service';
+import {MdToolBarColorService} from '../../+services/mdToolBarColor/md-tool-bar-color.service';
 @Component({
   selector: 'app-produit-list',
   templateUrl: './produit-list.component.html',
@@ -17,6 +19,7 @@ export class ProduitListComponent implements OnInit {
 products:any;
 searchForm: FormGroup;
 selectedOption: string;
+color:string='warn';
   //products: Observable<Produit[]>;
 
 
@@ -26,11 +29,15 @@ selectedOption: string;
     private router:Router,
     private formBuilder:FormBuilder,
     private title:Title,
-    public dialog:MdDialog
+    public dialog:MdDialog,
+    private productSharedDataService:ProductSharedDataService,
+    private mdToolBarColorService:MdToolBarColorService
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('Search for Products');
+    this.title.setTitle('Produits');
+    this.mdToolBarColorService.setColor(this.color);
+    console.log('this is the new color in the products list compoent', this.mdToolBarColorService._color)
     this.searchForm = this.formBuilder.group({
       search: ['']
     });
@@ -58,11 +65,13 @@ this.searchForm.controls['search'].valueChanges.map(value=>console.log('this is 
     return produit.filter(p => value ? p.name.toLowerCase().includes(value.toLowerCase()) : produit);
   }
 
-openDialog(e) {
+openDialog(e,product) {
   e.preventDefault();
     let dialogRef = this.dialog.open(DialogResultExampleDialog);
+    this.productSharedDataService.product=product;
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      
     });
   }
    goToAdd(){
@@ -78,10 +87,12 @@ openDialog(e) {
   template: 
    `<md-tab-group>
   <md-tab label="Produit">
-  <div style="width:400px; height:200px">
-  <p>{{ title }}</p>
-        <p>{{ message }}</p>
-       <img md-card-sm-image src="../../../assets/imgs/products.png">
+  <div style="width:400px; height:250px">
+  <p>Nom: {{ product.name }}</p>
+  <p>Hauteur: {{product.height}} CM</p>
+    <p>Poids: {{product.weight}} KG</p>
+        <p> Description: {{ product.description }}</p>
+       <img md-card-md-image [src]="product.img" style="margin-left:30%">
        </div>
   </md-tab>
   <md-tab label="Statistiques">
@@ -118,18 +129,19 @@ openDialog(e) {
             (click)="dialogRef.close()">Cancel</button>
     `,
 })
-export class DialogResultExampleDialog {
+export class DialogResultExampleDialog implements OnInit {
   title:string='';
   message:String='this is the message';
+  product:Produit;
    public lineChartData:Array<any> = [
-    [65, 59, 80, 81, 56, 55, 40],
+   [65, 59, 80, 81, 56, 55, 40] ,
     [28, 48, 40, 19, 86, 27, 90]
   ];
-    public lineChartLabels:Array<any> = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet'];
+    public lineChartLabels:Array<any> = ['Janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet'];
   public lineChartType:string = 'line';
   public pieChartType:string = 'pie';
  
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>,private productSharedDataService:ProductSharedDataService) {}
    public randomizeType():void {
     this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
     
@@ -140,5 +152,8 @@ export class DialogResultExampleDialog {
  
   public chartHovered(e:any):void {
     console.log(e);
+  }
+  ngOnInit() {
+    this.product=this.productSharedDataService.product
   }
 }

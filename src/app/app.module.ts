@@ -20,6 +20,9 @@ import { Title } from '@angular/platform-browser';
 import { AddProductComponent } from './+pages/add-product/add-product.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {AboutPageComponent} from'./+pages/about-page/about-page.component';
+import{ProductSharedDataService} from './+services/shared_data/product-shared-data.service';
+import {MdToolBarColorService} from './+services/mdToolBarColor/md-tool-bar-color.service';
+import { MdToolBarComponent } from './+widgets/md-tool-bar/md-tool-bar.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import {AboutPageComponent} from'./+pages/about-page/about-page.component';
     ProduitListComponent,
     DialogResultExampleDialog,
     AddProductComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    MdToolBarComponent
 
   ],
   imports: [
@@ -45,7 +49,7 @@ import {AboutPageComponent} from'./+pages/about-page/about-page.component';
     ChartsModule
   ],
   entryComponents: [DialogResultExampleDialog],
-  providers: [EmployeesService,ProduitService],
+  providers: [EmployeesService,ProduitService,ProductSharedDataService,MdToolBarColorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

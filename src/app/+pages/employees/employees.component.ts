@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Employee} from '../../+data/employee';
 import {EmployeesService} from '../../+services/employees.service';
 import {Router} from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,11 +11,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
-title:string='Employees directorie';
+
 employees:Employee[];
-  constructor(private router:Router,private employeesService:EmployeesService ) { }
+  constructor(private router:Router,private employeesService:EmployeesService,private title:Title ) { }
 
   ngOnInit() {
+    this.title.setTitle('Employés')
   this.getEmplyees();
   }
   getEmplyees(){

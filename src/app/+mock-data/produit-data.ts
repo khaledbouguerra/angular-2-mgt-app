@@ -32,8 +32,8 @@ export let PROD_DATA : Array<any>=[
         'id': 4,
         'name': 'produit 4',
         'description': 'description',
-        'height':10,
-        'weight':1,
+        'height':5,
+        'weight':0.1,
         'creationDate': '1/1/1999',
         'img':'../assets/imgs/p_4.jpg'
     },

@@ -3,7 +3,7 @@ import {Employee} from '../../+data/employee';
 import {EmployeesService} from '../../+services/employees.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
@@ -16,10 +16,12 @@ getedEmployee:Employee;
   constructor(
     private _router:Router,
     private empoyeesServie:EmployeesService,
-    private router:ActivatedRoute
+    private router:ActivatedRoute,
+    private title:Title,
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('editer employee')
     this.getedEmployee=new Employee();
     this.sub=this.router.params
     .subscribe(params=>{

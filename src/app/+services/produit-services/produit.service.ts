@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {PROD_DATA} from '../../+mock-data/produit-data';
 import {Produit} from '../../+data/Produit';
-import {Observable} from "rxjs";
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 
 
@@ -19,7 +18,7 @@ NEW_ID=16;
   return Promise.resolve(this.data);
 }
 
-getProduitByID(id):Promise<any>{
+getProduitByID(id):Promise<Produit>{
   return Promise.resolve(this.data)
   .then(produit=>produit.filter(produit=>produit.id==id)[0])
 }

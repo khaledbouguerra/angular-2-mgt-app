@@ -1,0 +1,27 @@
+
+<md-toolbar [color]="mdToolBarColorService.getColor()">
+ <img src="../assets/imgs/employees.png" width="65" height="65">&nbsp; 
+<md-icon class="example-icon">verified_user </md-icon>
+<button md-icon-button [mdMenuTriggerFor]="menu" class="menu" >
+  <md-icon>more_vert</md-icon>
+</button>
+<md-menu #menu="mdMenu">
+  <button md-menu-item (click)="goHome()">
+    <md-icon>apps</md-icon>
+    <span>Accueil</span>
+  </button>
+  <button md-menu-item (click)="goToProducts()">
+    <md-icon>playlist_add_check</md-icon>
+    <span>Produits</span>
+  </button>
+  <button md-menu-item (click)="goToEmployees()">
+    <md-icon>accessibility</md-icon>
+    <span>Employés</span>
+  </button>
+  <button md-menu-item (click)="goToAbout()">
+    <md-icon>settings_ethernet</md-icon>
+    <span>À propos</span>
+  </button>
+</md-menu>
+ 
+</md-toolbar>

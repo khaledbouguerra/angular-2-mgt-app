@@ -12,8 +12,8 @@
 <md-card class="searchCard">
 
 <form [formGroup]="searchForm" class="input">
- <md-input-container class="md-icon-float"   fxFlex="100%">
-<input  mdInput type="search" name="search" placeholder="search" class="search" formControlName="search"   fxFlex="100%">
+ <md-input-container class="md-icon-float"   class="item item-1" fxFlex="100%">
+<input  mdInput type="search" name="search" placeholder="search" class="search" formControlName="search"  class="item item-1"  fxFlex="100%">
   <span class="searchIcon">
  <md-icon >search</md-icon>
 </span>
@@ -37,7 +37,7 @@
   <div class="item item-1" fxFlex="15%" *ngFor="let product  of products" >
 <md-card class="employess">
 
-  <a href="#" (click)="openDialog($event)">
+  <a href="#" (click)="openDialog($event,product)">
 <img md-card-sm-image src="../../../assets/imgs/products.png" *ngIf="!product.img">
 <img md-card-sm-image [src]="product.img" *ngIf="product.img">
 <md-card-title color="primary">{{product.name}} </md-card-title>

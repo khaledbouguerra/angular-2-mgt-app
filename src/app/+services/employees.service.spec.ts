@@ -45,7 +45,5 @@ service.addEmployee(newEmployee)
 })
 
 }));
-it('should remove an employee by id', inject([EmployeesService],(service:EmployeesService)=>{
 
-}))
 })
