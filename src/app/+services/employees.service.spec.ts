@@ -45,5 +45,29 @@ service.addEmployee(newEmployee)
 })
 
 }));
+it('should remove an employee',inject([EmployeesService],(service:EmployeesService)=>{
+  let length;
+  service.getEmployees()
+  .then(employees=>length=employees.length);
+  let newEmployee:Employee=new Employee();
+  newEmployee.id=100;
+  newEmployee.lastName='bouguerra';
+  newEmployee.phone='+216000000'
+  newEmployee.email='test@test.com'
+  newEmployee.firstName='khaled';
+  let testingFunction=(employees:Array<Employee>,len:number)=>{
+    expect(employees.length).toBeLessThan(len);
+    expect(employees.length).toBe(len-1);
+  }
+service.removeEmployee(newEmployee)
+.then(()=>service.getEmployees()
+.then(emplyees=>{
+  testingFunction(emplyees,length);
+})
 
+
+)
+
+ 
+}))
 })

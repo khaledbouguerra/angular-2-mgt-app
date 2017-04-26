@@ -29,9 +29,7 @@ AddProduct(produit:Produit):Promise<any>{
    let day=date.getDate();
     let year=date.getFullYear();
     let month=date.getMonth()+1;
-  if(!produit.id){
-    produit.id=this.NEW_ID++;
-  }
+  
  
   if(!produit.creationDate){
    produit.creationDate=day+'/'+month+'/'+year;

@@ -61,6 +61,7 @@ describe('ProduitService', () => {
    
     let testingRemoveProduct=(products:Array<Produit>,newLength)=>{
      expect(products.length).toBe(newLength);
+       }
      service.getProducts()
      .then((products)=>{
        length=products.length;
@@ -73,6 +74,6 @@ describe('ProduitService', () => {
     })
     )
   })
-    }
+  
   }))
 });

@@ -21,9 +21,7 @@ addEmployee(employee:Employee):Promise<any>{
   let year = date.getFullYear();
   let month =date.getMonth()+1;
   let day= date.getDate()
-  if(!employee.id){
-    employee.id=this.NEW_ID++
-  }
+  
   if(!employee.createDate){
     employee.createDate=month+'/'+day+'/'+year;
     return Promise.resolve(this.data)
