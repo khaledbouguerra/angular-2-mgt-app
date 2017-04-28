@@ -47,7 +47,7 @@ describe('ProduitService', () => {
 .then(()=>
   service.getProduitByID(20)
   .then(testingNewProductFuntion)
-
+  
 )
   }));
   it('should remove one product',inject([ProduitService],(service:ProduitService)=>{
