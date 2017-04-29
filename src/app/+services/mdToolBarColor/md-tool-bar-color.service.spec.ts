@@ -9,7 +9,15 @@ describe('MdToolBarColorService', () => {
     });
   });
 
-  it('should ...', inject([MdToolBarColorService], (service: MdToolBarColorService) => {
-    expect(service).toBeTruthy();
+  it('should set new color', inject([MdToolBarColorService], (service: MdToolBarColorService) => {
+    let color='green';
+    service.setColor(color);
+    expect(service._color).toBe('green')
+   
   }));
+  it('should get the color',inject([MdToolBarColorService],(service:MdToolBarColorService)=>{
+    let color='green';
+    service.setColor(color);
+    expect(service.getColor()).toBe(color);
+  }))
 });
