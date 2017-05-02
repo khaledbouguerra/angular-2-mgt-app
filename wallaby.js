@@ -1,72 +1,55 @@
 var wallabyWebpack = require('wallaby-webpack');
-var path = require('path');
 
-var compilerOptions = Object.assign(
-  require('./tsconfig.json').compilerOptions,
-  require('./src/tsconfig.spec.json').compilerOptions);
+// if you use the webpack defined variable ENV in any components
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
-module.exports = function (wallaby) {
+var webpackPostprocessor = wallabyWebpack({
+  entryPatterns: [
+    'config/spec-bundle.js',
+    'src/**/*spec.js'
+  ],
 
-  var webpackPostprocessor = wallabyWebpack({
-    entryPatterns: [
-      'src/wallabyTest.js',
-      'src/**/*spec.js'
-    ],
+  module: {
+    loaders: [
+      // if you use templateUrl in your components and want to inline your templates uncomment the below line
+      {test: /\.js$/, loader: 'angular2-template-loader', exclude: /node_modules/},
+      
+      // if importing .scss files in your component styleUrls uncomment the following line
+      // { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
+      {test: /\.css$/, loader: 'raw-loader'},
+      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.html$/, loader: 'raw-loader'},
+      {test: /karma-require/, loader: 'null-loader'}
+    ]
+  },
+   plugins: [
+       new DefinePlugin({
+         'ENV': JSON.stringify(ENV)
+       })
+   ]
+});
 
-    module: {
-      loaders: [
-        {test: /\.css$/, loader: 'raw-loader'},
-        {test: /\.html$/, loader: 'raw-loader'},
-        {test: /\.js$/, loader: 'angular2-template-loader', exclude: /node_modules/},
-        {test: /\.json$/, loader: 'json-loader'},
-        {test: /\.styl$/, loaders: ['raw-loader', 'stylus-loader']},
-        {test: /\.less$/, loaders: ['raw-loader', 'less-loader']},
-        {test: /\.scss$|\.sass$/, loaders: ['raw-loader', 'sass-loader']},
-        {test: /\.(jpg|png)$/, loader: 'url-loader?limit=128000'}
-      ]
-    },
-
-    resolve: {
-      modules: [
-        path.join(wallaby.projectCacheDir, 'src/app'),
-        path.join(wallaby.projectCacheDir, 'src')
-      ]
-    }
-  });
+module.exports = function () {
 
   return {
     files: [
+      {pattern: 'config/spec-bundle.js', load: false},
+      {pattern: 'config/karma-require.js', load: false},
       {pattern: 'src/**/*.ts', load: false},
-      {pattern: 'src/**/*.d.ts', ignore: true},
       {pattern: 'src/**/*.css', load: false},
-      {pattern: 'src/**/*.less', load: false},
-      {pattern: 'src/**/*.scss', load: false},
-      {pattern: 'src/**/*.sass', load: false},
-      {pattern: 'src/**/*.styl', load: false},
       {pattern: 'src/**/*.html', load: false},
       {pattern: 'src/**/*.json', load: false},
-      {pattern: 'src/**/*spec.ts', ignore: true}
+      {pattern: 'src/**/*spec.ts', ignore: true},
+      {pattern: 'src/**/*.d.ts', ignore: true}
     ],
 
     tests: [
-      {pattern: 'src/**/*spec.ts', load: false}
+      {pattern: 'src/**/*spec.ts', load: false},
+      {pattern: 'test/**/*spec.ts', load: false}
     ],
 
     testFramework: 'jasmine',
-
-    compilers: {
-      '**/*.ts': wallaby.compilers.typeScript(compilerOptions)
-    },
-    
-    middleware: function (app, express) {
-      var path = require('path');
-      app.use('/favicon.ico', express.static(path.join(__dirname, 'src/favicon.ico')));
-      app.use('/assets', express.static(path.join(__dirname, 'src/assets')));
-    },
-
-    env: {
-      kind: 'electron'
-    },
 
     postprocessor: webpackPostprocessor,
 

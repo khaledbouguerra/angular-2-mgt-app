@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { EmployeesComponent } from './employees.component';
 import { DebugElement }    from '@angular/core';
 import {EmployeesService} from '../../+services/employees.service';
+import {MaterialModule} from '@angular/material';
 describe('EmployeesComponent', () => {
   let component: EmployeesComponent;
   let fixture: ComponentFixture<EmployeesComponent>;
@@ -14,7 +15,7 @@ describe('EmployeesComponent', () => {
   let serviceSpy:any;
   let routerSpy:any;
 
-beforeEach(async(function(){
+beforeEach(async(()=>{
   routerMock={
   navigate: jasmine.createSpy('navigate')
 };
@@ -27,6 +28,7 @@ beforeEach(async(function(){
         };
   TestBed.configureTestingModule({
     declarations:[EmployeesComponent],
+    imports:[MaterialModule ],
     providers:[
       {provide:EmployeesService,useValue:employeeServiceMock},
       {provide:Router,useValue:routerMock}
@@ -43,7 +45,7 @@ beforeEach(async(function(){
     component = fixture.componentInstance;
     fixture.detectChanges();
     de=fixture.debugElement.query(By.css('table tbody'));
-    el=de.nativeElement;
+   
     serviceSpy = TestBed.get(EmployeesService);
     routerSpy=TestBed.get(Router);
   });
@@ -68,16 +70,16 @@ beforeEach(async(function(){
    expect(employeeServiceMock.removeEmployee).toHaveBeenCalledTimes(1);
   
   })
-  it('should navigate to edit page',()=>{
+  it('should navigate to edit page',async(()=>{
     component.goToEdit(55);
     fixture.whenStable()
-    .then(()=>expect(routerSpy.navigate).toHaveBeenCalledWith(['/edit',55]))
+    .then(()=>expect(routerMock.navigate).toHaveBeenCalledWith(['/edit',55]))
 
-  })
-  it('shoud navigate to add new employee page',()=>{
+  }))
+  it('shoud navigate to add new employee page',async(()=>{
     component.goToAdd();
     fixture.whenStable()
-    .then(()=>expect(routerSpy.navigate).toHaveBeenCalledWith(['/add']));
+    .then(()=>expect(routerMock.navigate).toHaveBeenCalledWith(['/add']));
     
-  })
+  }))
 });
